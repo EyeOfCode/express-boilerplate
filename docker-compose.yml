@@ -1,0 +1,14 @@
+services:
+  # app:
+  #   container_name: app
+  #   build: .
+  #   volumes:
+  #     - .:/var/www/app
+  #   ports:
+  #     - 8000:8000
+  database:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db:/data/db
