@@ -8,14 +8,17 @@
 - typescript
 - express
 - docker
+- joi validator
 
 ### Feature
 
-- crud
-- middleware
-- upload file
-- send mail
-- cronjob
+- [x] crud
+- [x] middleware
+- [ ] upload file
+- [ ] send mail
+- [ ] cronjob
+- [ ] repository pattern
+- [x] joi validator
 
 ### Run
 

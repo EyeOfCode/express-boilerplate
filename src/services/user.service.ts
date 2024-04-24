@@ -1,19 +1,37 @@
 import { Model, Types } from "mongoose";
-import { IUser } from "../models/user.model";
-import { QueryRepository } from "../repository/query.repository";
 
-export default class UserService extends QueryRepository {
+import { IUser } from "../models/user.model";
+
+export default class UserService {
   constructor(private userModel: Model<IUser>) {
-    super();
     this.find = this.find.bind(this);
     this.findById = this.findById.bind(this);
+    this.findOne = this.findOne.bind(this);
+    this.create = this.create.bind(this);
+    this.update = this.update.bind(this);
   }
 
-  findById(id: Types.ObjectId): Promise<IUser | null> {
+  async findById(id: Types.ObjectId): Promise<IUser | null> {
     return this.userModel.findById(id);
   }
 
-  find(): Promise<IUser[]> {
-    return this.userModel.find({});
+  async find(query?: any): Promise<IUser[]> {
+    return this.userModel.find(query || {});
+  }
+
+  async findOne(query?: any): Promise<IUser | null> {
+    return this.userModel.findOne(query || {});
+  }
+
+  async create(user: IUser): Promise<IUser> {
+    return this.userModel.create(user);
+  }
+
+  async update(id: Types.ObjectId, user: IUser): Promise<IUser | null> {
+    return this.userModel.findByIdAndUpdate(id, user);
+  }
+
+  async delete(id: Types.ObjectId): Promise<null> {
+    return this.userModel.findByIdAndDelete(id);
   }
 }
